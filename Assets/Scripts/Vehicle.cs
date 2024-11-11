@@ -11,6 +11,8 @@ public class Vehicle : MonoBehaviour
     public float decelaration;
     public float maxSpeed;
     public float maxRevelantSpeed;
+    public float speedRatio;
+    public AnimationCurve enginePitchCurve;
     Rigidbody rb;
     
 
@@ -30,6 +32,14 @@ public class Vehicle : MonoBehaviour
     }
     void Update()
     {
+
+        speedRatio = speed / maxSpeed;
+        engineSound.pitch = enginePitchCurve.Evaluate(speedRatio);
+
+        //friction
+        speed *= decelaration;
+
+
         var y = rb.velocity.y;
         rb.velocity = transform.forward * speed;
         rb.velocity = new Vector3(rb.velocity.x,y, rb.velocity.z);

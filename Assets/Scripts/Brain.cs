@@ -9,6 +9,7 @@ public class Brain : MonoBehaviour
     public float minTargetDistance;
     Transform target;
     public float sensitivity;
+    public float turnSensitivity = 30f;
 
     Vehicle vehicle;
 
@@ -25,10 +26,10 @@ public class Brain : MonoBehaviour
 
 
         float angle = Vector3.SignedAngle(transform.forward, target.position - transform.position, Vector3.up);
-        if(angle<1f || angle > minTurnAngle)
+        if(angle< -minTurnAngle || angle > minTurnAngle)
         {
             float side = Mathf.Sign(angle);
-            float power = Mathf.Abs(angle) / 30f;
+            float power = Mathf.Abs(angle) / turnSensitivity;
             vehicle.Turn(side * power);
         }
         
