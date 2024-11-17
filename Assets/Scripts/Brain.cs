@@ -4,9 +4,9 @@ using UnityEngine;
 public class Brain : MonoBehaviour
 {
     public float speed;
-    public float minTurnAngle;
+    public float minTurnAngle = 1f;
     public Path path;
-    public float minTargetDistance;
+    public float minTargetDistance = 1f;
     Transform target;
     public float sensitivity;
     public float turnSensitivity = 30f;
